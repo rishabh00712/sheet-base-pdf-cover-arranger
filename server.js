@@ -1,3 +1,44 @@
+/*
+ * ===============================================
+ * Module        : handle-preview (Express Server)
+ * ===============================================
+ *
+ * Author        : Rishabh Garai
+ * Email         : rishabhgarai33@gmail.com
+ *
+ * Description   : Express server to receive a shared Google Drive PDF link,
+ *                 process it by adding custom cover/spread pages, and upload
+ *                 the final output back to Google Drive with public access.
+ *
+ * External Dependencies:
+ * -----------------------------------------------
+ * express                 : Web framework for Node.js
+ * axios                   : HTTP client for fetching PDFs
+ * googleapis              : Google Drive API client
+ * body-parser             : Middleware for parsing JSON bodies
+ * dotenv                  : Loads environment variables from .env
+ *
+ * Node.js Built-in Modules:
+ * -----------------------------------------------
+ * stream                  : Used for uploading buffer as a stream
+ * path, url               : Used for resolving paths in ESM
+ *
+ * Custom Modules:
+ * -----------------------------------------------
+ * ./utils/googleAuth.js           : Authenticates with Google service account
+ * ./utils/generateSpreadPdfCover.js : Applies cover/spread layout to PDF
+ *
+ * Endpoints:
+ * -----------------------------------------------
+ * POST /handle-preview
+ * - Authenticates and downloads a PDF from Drive
+ * - Applies custom formatting
+ * - Uploads and shares the processed PDF
+ *
+ * Last Modified : 12 June 2025
+ * Modified By   : Rishabh Garai
+ * ===============================================
+ */
 import express from 'express';
 import axios from 'axios';
 import { google } from 'googleapis';
