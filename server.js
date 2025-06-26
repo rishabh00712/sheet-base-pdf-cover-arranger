@@ -63,14 +63,14 @@ function extractFileId(link) {
   return match ? match[1] : null;
 }
 
-// ✅ Clean up original Drive file name
+// ✅ Clean up original Drive file name, prepend "cover_"
 function sanitizeFileName(name) {
-  if (!name) return 'Processed_File.pdf';
-
-  return name
+  if (!name) return 'cover_Processed_File.pdf';
+  const cleanName = name
     .replace(/(_\d{8}_\d{6}(_\d+)?)+\.pdf$/i, '') // remove trailing _timestamp_0000.pdf
     .replace(/\.pdf+$/i, '')                      // remove any trailing .pdf/.pdf.pdf
-    .trim() + '.pdf';                             // ensure one clean .pdf
+    .trim();
+  return 'cover_' + cleanName + '.pdf';           // prepend and ensure one clean .pdf
 }
 
 // ✅ Main endpoint
